@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Ahsan - Islamic Education Hub Creator</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- COMPACT INLINE CSS -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: #0F0F23;
+            color: #FFFFFF;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            z-index: 1000; padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        
+        .nav-brand {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 1.5rem; font-weight: 700; color: #FFFFFF;
+            text-decoration: none; transition: all 0.3s ease;
+        }
+        .nav-brand:hover { color: #8B5CF6; }
+        .nav-brand i { color: #8B5CF6; font-size: 1.8rem; }
+        
+        .nav-menu {
+            display: flex; list-style: none; gap: 2rem;
+            align-items: center; margin: 0; padding: 0;
+        }
+        
+        .nav-link {
+            color: #E5E7EB; text-decoration: none; font-weight: 500;
+            padding: 0.5rem 1rem; border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #8B5CF6; background: rgba(139, 92, 246, 0.1);
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            padding: 120px 0 80px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(139,92,246,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-100px) rotate(360deg); } }
+        
+        .hero-title {
+            font-size: 3rem; margin-bottom: 1rem; position: relative; z-index: 2;
+            background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .arabic-text {
+            font-family: 'Amiri', serif; color: #FCD34D;
+            font-size: 2rem; margin-bottom: 2rem; direction: rtl;
+            position: relative; z-index: 2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem; color: #E5E7EB; max-width: 600px;
+            margin: 0 auto; position: relative; z-index: 2;
+        }
+        
+        /* Sections */
+        .section { padding: 80px 0; }
+        .content-section { background: #16213E; }
+        
+        .section-header {
+            text-align: center; margin-bottom: 3rem;
+        }
+        .section-header h2 {
+            font-size: 2.5rem; color: #FFFFFF; margin-bottom: 1rem;
+        }
+        .arabic-subtitle {
+            font-family: 'Amiri', serif; color: #FCD34D;
+            font-size: 1.5rem; margin-bottom: 1rem;
+        }
+        
+        /* Profile Card */
+        .profile-card {
+            max-width: 800px; margin: 0 auto;
+            background: #1A1A2E; padding: 3rem; border-radius: 1rem;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            position: relative;
+        }
+        .profile-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%);
+            border-radius: 1rem 1rem 0 0;
+        }
+        
+        .profile-header {
+            display: flex; align-items: center; gap: 2rem;
+            margin-bottom: 2rem; flex-wrap: wrap;
+        }
+        
+        .avatar {
+            width: 150px; height: 150px;
+            background: linear-gradient(135deg, #8B5CF6, #F59E0B);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 4rem; color: white;
+            border: 4px solid rgba(139, 92, 246, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .profile-info { flex: 1; min-width: 300px; }
+        .profile-info h2 {
+            color: #FFFFFF; margin-bottom: 0.5rem; font-size: 2.5rem;
+        }
+        .profile-info .arabic-name {
+            font-family: 'Amiri', serif; color: #FCD34D;
+            font-size: 1.5rem; margin-bottom: 1rem;
+        }
+        .profile-info .title {
+            color: #8B5CF6; font-size: 1.2rem; font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .profile-info .company {
+            color: #E5E7EB; margin-bottom: 1rem;
+        }
+        
+        .profile-details {
+            display: flex; flex-direction: column; gap: 0.5rem;
+        }
+        .detail-item {
+            display: flex; align-items: center; gap: 0.75rem; color: #E5E7EB;
+        }
+        .detail-item i { color: #8B5CF6; width: 20px; }
+        
+        /* Social Links */
+        .social-links {
+            display: flex; gap: 1rem; justify-content: center;
+            margin: 2rem 0; flex-wrap: wrap;
+        }
+        .social-link {
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; color: white; text-decoration: none;
+            border-radius: 50px; font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .social-link.discord { background: #5865F2; }
+        .social-link.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-link:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        
+        /* Grid */
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; margin-top: 2rem;
+        }
+        
+        /* Cards */
+        .card {
+            background: #1A1A2E; padding: 2rem; border-radius: 1rem;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center; transition: all 0.3s ease;
+            position: relative;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%);
+            border-radius: 1rem 1rem 0 0;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+            border-color: #8B5CF6;
+        }
+        
+        .card-icon {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; margin: 0 auto 1rem;
+            font-size: 2rem; color: white;
+        }
+        .card h3 { color: #FFFFFF; margin-bottom: 0.5rem; }
+        .card .arabic-title {
+            font-family: 'Amiri', serif; color: #FCD34D;
+            font-size: 1.2rem; margin-bottom: 1rem;
+        }
+        .card p { color: #E5E7EB; }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem; margin: 2rem 0;
+        }
+        .stat-item {
+            text-align: center; padding: 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 1rem; border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        .stat-number {
+            font-size: 2rem; font-weight: 700; color: #8B5CF6;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label { color: #E5E7EB; font-size: 0.9rem; }
+        
+        /* Message */
+        .message-card {
+            max-width: 800px; margin: 0 auto;
+            background: #16213E; padding: 3rem; border-radius: 1rem;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            position: relative;
+        }
+        .message-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+            border-radius: 1rem 1rem 0 0;
+        }
+        .message-greeting {
+            color: #8B5CF6; font-weight: 600; font-size: 1.1rem;
+            margin-bottom: 1rem; text-align: center;
+        }
+        .message-card p { color: #E5E7EB; margin-bottom: 1rem; }
+        .signature {
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            padding-top: 2rem; text-align: center; margin-top: 2rem;
+        }
+        .signature .arabic { font-family: 'Amiri', serif; color: #FCD34D; font-size: 1.5rem; }
+        .signature .name { font-weight: 600; color: #FFFFFF; margin: 0.5rem 0; }
+        .signature .title { color: #9CA3AF; font-size: 0.9rem; }
+        
+        /* Footer */
+        .footer {
+            background: #0A0A1A; padding: 3rem 0 1rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            position: relative;
+        }
+        .footer::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%);
+        }
+        .footer-content {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: #8B5CF6; margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .footer-section h4 i { color: #FCD34D; }
+        .footer-section p { color: #E5E7EB; margin-bottom: 1rem; }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section ul li a {
+            color: #E5E7EB; text-decoration: none; transition: all 0.3s ease;
+        }
+        .footer-section ul li a:hover { color: #8B5CF6; }
+        .footer-arabic { font-family: 'Amiri', serif; color: #FCD34D; margin-top: 0.5rem; }
+        .footer-bottom {
+            text-align: center; padding-top: 2rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            color: #9CA3AF;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero-title { font-size: 2rem; }
+            .profile-header { flex-direction: column; text-align: center; }
+            .grid, .stats-grid { grid-template-columns: 1fr; }
+            .social-links { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-mosque"></i>
+                Islamic Education Hub
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quran.html" class="nav-link">Quran</a></li>
+                <li><a href="hadith.html" class="nav-link">Hadith</a></li>
+                <li><a href="books.html" class="nav-link">Books</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <h1 class="hero-title">About the Creator</h1>
+            <p>Meet Ahsan, the young developer behind Islamic Education Hub</p>
+        </div>
+    </section>
+
+    <!-- Profile -->
+    <section class="section">
+        <div class="container">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h2>Ahsan</h2>
+                        <div class="arabic-name">أحسن</div>
+                        <p class="title">Founder & Developer</p>
+                        <p class="company">Islamic Education Hub</p>
+                        <div class="profile-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Pakistan 🇵🇰</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-birthday-cake"></i>
+                                <span>14 years old</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-code"></i>
+                                <span>Started coding at age 12</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Passionate about Islamic education</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://discord.com/users/ahsan_prime" target="_blank" class="social-link discord">
+                        <i class="fab fa-discord"></i>
+                        <span>ahsan_prime</span>
+                    </a>
+                    <a href="https://instagram.com/ahsanijaz010" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>ahsanijaz010</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section class="section content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Journey</h2>
+                <div class="arabic-subtitle">رحلتي</div>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>The Vision</h3>
+                    <div class="arabic-title">الرؤية</div>
+                    <p>At 14, I wanted to create a modern platform for authentic Islamic knowledge accessible to Muslims worldwide.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>The Journey</h3>
+                    <div class="arabic-title">الرحلة</div>
+                    <p>Started programming at 12, self-taught web development, and spent months creating this platform with love.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-mosque"></i></div>
+                    <h3>The Mission</h3>
+                    <div class="arabic-title">المهمة</div>
+                    <p>To serve the Muslim Ummah through technology and create my Sadaqah Jariyah for continuous benefit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Project Stats</h2>
+                <div class="arabic-subtitle">إحصائيات المشروع</div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Months Development</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Complete Pages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Lines of Code</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Islamic Sources</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Hours Invested</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Love & Dedication</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message -->
+    <section class="section content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Personal Message</h2>
+                <div class="arabic-subtitle">رسالة شخصية</div>
+            </div>
+            <div class="message-card">
+                <p class="message-greeting">Assalamu Alaikum wa Rahmatullahi wa Barakatuh</p>
+                <p>My name is <strong>Ahsan</strong>, a 14-year-old student from Pakistan 🇵🇰. I've been passionate about technology and Islamic knowledge since childhood. When I started programming at age 12, I dreamed of using my skills to serve the Muslim community.</p>
+                <p><strong>Islamic Education Hub</strong> is my humble contribution to Sadaqah Jariyah - continuous charity that benefits Muslims worldwide. Every line of code was written with sincere intention and love for Allah SWT and our Ummah.</p>
+                <p>I'm always open to feedback and collaboration. Feel free to reach out through my social media!</p>
+                <p style="color: #8B5CF6; font-weight: 600; text-align: center;">May Allah accept this effort and make it beneficial for all Muslims. Ameen.</p>
+                <div class="signature">
+                    <div class="arabic">أحسن</div>
+                    <p class="name">- Ahsan</p>
+                    <p class="title">Founder, Islamic Education Hub</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-mosque"></i> Islamic Education Hub</h4>
+                    <p>Created by Ahsan, a 14-year-old developer from Pakistan, dedicated to spreading authentic Islamic knowledge worldwide.</p>
+                    <div class="footer-arabic">صنع بحب في باكستان</div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="quran.html">Holy Quran</a></li>
+                        <li><a href="hadith.html">Hadith Collections</a></li>
+                        <li><a href="books.html">Islamic Books</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://discord.com/users/ahsan_prime" target="_blank">Discord: ahsan_prime</a></li>
+                        <li><a href="https://instagram.com/ahsanijaz010" target="_blank">Instagram: ahsanijaz010</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Islamic Education Hub. Created with love by Ahsan.</p>
+                <div class="footer-arabic">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

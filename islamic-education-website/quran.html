@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holy Quran - Islamic Education Hub</title>
+    
+    <!-- Preload Arabic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', Arial, sans-serif; background: #0F0F23; color: #FFFFFF; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* Arabic Text Styling */
+        .arabic-text {
+            font-family: 'Amiri', 'Scheherazade New', 'Traditional Arabic', 'Tahoma', serif !important;
+            color: #FCD34D;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            direction: rtl;
+            unicode-bidi: embed;
+            text-align: center;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        .arabic-subtitle {
+            font-family: 'Amiri', 'Scheherazade New', 'Traditional Arabic', 'Tahoma', serif !important;
+            color: #FCD34D;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            direction: rtl;
+            unicode-bidi: embed;
+            text-align: center;
+        }
+        
+        /* Navigation */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(15, 15, 35, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(139, 92, 246, 0.2); z-index: 1000; padding: 1rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; font-weight: 700; color: #FFFFFF; text-decoration: none; }
+        .nav-brand:hover { color: #8B5CF6; }
+        .nav-brand i { color: #8B5CF6; font-size: 1.8rem; }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-link { color: #E5E7EB; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 0.5rem; transition: all 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: #8B5CF6; background: rgba(139, 92, 246, 0.1); }
+        
+        /* Header */
+        .hero { background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%); padding: 120px 0 80px; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Search */
+        .search-input { width: 100%; max-width: 400px; padding: 1rem 1.5rem; background: #1A1A2E; border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 50px; color: #FFFFFF; font-size: 1rem; }
+        .search-input:focus { outline: none; border-color: #8B5CF6; box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1); }
+        .search-input::placeholder { color: #9CA3AF; }
+        
+        /* Sections */
+        .section { padding: 80px 0; }
+        .content-section { background: #16213E; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; color: #FFFFFF; margin-bottom: 1rem; }
+        
+        /* Grid & Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .content-item { background: #1A1A2E; padding: 2rem; border-radius: 1rem; border: 1px solid rgba(139, 92, 246, 0.2); margin-bottom: 2rem; transition: all 0.3s ease; position: relative; }
+        .content-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%); border-radius: 1rem 1rem 0 0; }
+        .content-item:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2); border-color: #8B5CF6; }
+        .content-item h3 { color: #FFFFFF; margin-bottom: 0.5rem; font-size: 1.5rem; }
+        .content-item p { color: #E5E7EB; margin-bottom: 1rem; }
+        .content-item strong { color: #8B5CF6; }
+        
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: none; border-radius: 50px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; font-size: 0.9rem; }
+        .btn-primary { background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%); color: white; }
+        .btn-secondary { background: transparent; color: #8B5CF6; border: 2px solid #8B5CF6; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); }
+        .btn-secondary:hover { background: #8B5CF6; color: white; }
+        .content-actions { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+        
+        /* Footer */
+        .footer { background: #0A0A1A; padding: 3rem 0 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h4 { color: #8B5CF6; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .footer-section h4 i { color: #FCD34D; }
+        .footer-section p { color: #E5E7EB; margin-bottom: 1rem; }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section ul li a { color: #E5E7EB; text-decoration: none; transition: all 0.3s ease; }
+        .footer-section ul li a:hover { color: #8B5CF6; }
+        .footer-arabic { font-family: 'Amiri', 'Scheherazade New', serif !important; color: #FCD34D; margin-top: 0.5rem; direction: rtl; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(139, 92, 246, 0.2); color: #9CA3AF; }
+        
+        @media (max-width: 768px) { .nav-menu { display: none; } .grid { grid-template-columns: 1fr; } .content-actions { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand"><i class="fas fa-mosque"></i> Islamic Education Hub</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quran.html" class="nav-link active">Quran</a></li>
+                <li><a href="hadith.html" class="nav-link">Hadith</a></li>
+                <li><a href="books.html" class="nav-link">Books</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <h1>Holy Quran</h1>
+            <div class="arabic-subtitle">القرآن الكريم</div>
+            <p>Read the complete Quran with Arabic text and translations</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <input type="search" placeholder="Search Surahs..." class="search-input">
+            </div>
+        </div>
+    </section>
+
+    <section class="section content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>All Surahs</h2>
+                <div class="arabic-subtitle">جميع السور</div>
+                <p>Click to read any Surah with translation</p>
+            </div>
+
+            <div class="grid">
+                <div class="content-item">
+                    <h3>1. Al-Fatiha</h3>
+                    <div class="arabic-text">الفاتحة</div>
+                    <p><strong>The Opening</strong> • 7 verses • Meccan</p>
+                    <p>The opening chapter recited in every prayer</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="1"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="Al-Fatiha"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>2. Al-Baqarah</h3>
+                    <div class="arabic-text">البقرة</div>
+                    <p><strong>The Cow</strong> • 286 verses • Medinan</p>
+                    <p>The longest chapter covering faith and law</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="2"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="Al-Baqarah"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>3. Al Imran</h3>
+                    <div class="arabic-text">آل عمران</div>
+                    <p><strong>Family of Imran</strong> • 200 verses • Medinan</p>
+                    <p>Stories of prophets and unity of believers</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="3"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="Al Imran"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>4. An-Nisa</h3>
+                    <div class="arabic-text">النساء</div>
+                    <p><strong>The Women</strong> • 176 verses • Medinan</p>
+                    <p>Women's rights and family law</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="4"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="An-Nisa"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>5. Al-Ma'idah</h3>
+                    <div class="arabic-text">المائدة</div>
+                    <p><strong>The Table</strong> • 120 verses • Medinan</p>
+                    <p>Food laws and contracts</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="5"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="Al-Ma'idah"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>6. Al-An'am</h3>
+                    <div class="arabic-text">الأنعام</div>
+                    <p><strong>The Cattle</strong> • 165 verses • Meccan</p>
+                    <p>Oneness of Allah and stories of prophets</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="6"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="Al-An'am"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>7. Al-A'raf</h3>
+                    <div class="arabic-text">الأعراف</div>
+                    <p><strong>The Heights</strong> • 206 verses • Meccan</p>
+                    <p>Stories of prophets and their communities</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="7"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="Al-A'raf"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>8. Al-Anfal</h3>
+                    <div class="arabic-text">الأنفال</div>
+                    <p><strong>The Spoils of War</strong> • 75 verses • Medinan</p>
+                    <p>Battle of Badr and warfare guidance</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="8"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="Al-Anfal"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>9. At-Tawbah</h3>
+                    <div class="arabic-text">التوبة</div>
+                    <p><strong>The Repentance</strong> • 129 verses • Medinan</p>
+                    <p>Treaties, warfare, and sincere repentance</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="9"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="At-Tawbah"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+
+                <div class="content-item">
+                    <h3>10. Yunus</h3>
+                    <div class="arabic-text">يونس</div>
+                    <p><strong>Jonah</strong> • 109 verses • Meccan</p>
+                    <p>Allah's mercy and importance of faith</p>
+                    <div class="content-actions">
+                        <button class="btn btn-primary read-btn" data-surah="10"><i class="fas fa-book-open"></i> Read Online</button>
+                        <button class="btn btn-secondary download-btn" data-surah="Yunus"><i class="fas fa-download"></i> Download</button>
+                        <button class="btn btn-secondary bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-secondary" onclick="showNotification('More Surahs coming soon!', 'info')">
+                    <i class="fas fa-plus"></i> Load More Surahs
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-mosque"></i> Islamic Education Hub</h4>
+                    <p>Spreading authentic Islamic knowledge worldwide</p>
+                    <div class="footer-arabic">صنع بحب للأمة الإسلامية</div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="quran.html">Holy Quran</a></li>
+                        <li><a href="hadith.html">Hadith Collections</a></li>
+                        <li><a href="books.html">Islamic Books</a></li>
+                        <li><a href="about.html">About Creator</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Islamic Education Hub. Created with dedication.</p>
+                <div class="footer-arabic">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle read buttons - redirect to Quran.com
+            document.querySelectorAll('.read-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const surahNumber = this.getAttribute('data-surah');
+                    const url = `https://quran.com/${surahNumber}`;
+                    const originalText = this.innerHTML;
+                    
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening...';
+                    this.disabled = true;
+                    
+                    showNotification(`Opening Surah ${surahNumber}...`, 'info');
+                    
+                    setTimeout(() => {
+                        window.open(url, '_blank');
+                        showNotification(`Surah ${surahNumber} opened successfully!`, 'success');
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 800);
+                });
+            });
+            
+            // Handle download buttons - redirect to PDF sources
+            document.querySelectorAll('.download-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const surah = this.getAttribute('data-surah');
+                    const pdfUrls = {
+                        'Al-Fatiha': 'https://www.kalamullah.com/Books/Quran-Surah-1-Al-Fatiha.pdf',
+                        'Al-Baqarah': 'https://www.kalamullah.com/Books/Quran-Surah-2-Al-Baqarah.pdf',
+                        'Al Imran': 'https://www.kalamullah.com/Books/Quran-Surah-3-Al-Imran.pdf',
+                        'An-Nisa': 'https://www.kalamullah.com/Books/Quran-Surah-4-An-Nisa.pdf',
+                        'Al-Ma\'idah': 'https://www.kalamullah.com/Books/Quran-Surah-5-Al-Maidah.pdf',
+                        'Al-An\'am': 'https://www.kalamullah.com/Books/Quran-Surah-6-Al-Anam.pdf',
+                        'Al-A\'raf': 'https://www.kalamullah.com/Books/Quran-Surah-7-Al-Araf.pdf',
+                        'Al-Anfal': 'https://www.kalamullah.com/Books/Quran-Surah-8-Al-Anfal.pdf',
+                        'At-Tawbah': 'https://www.kalamullah.com/Books/Quran-Surah-9-At-Tawbah.pdf',
+                        'Yunus': 'https://www.kalamullah.com/Books/Quran-Surah-10-Yunus.pdf'
+                    };
+                    
+                    const url = pdfUrls[surah] || 'https://www.kalamullah.com/Books/The%20Noble%20Quran.pdf';
+                    const originalText = this.innerHTML;
+                    
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...';
+                    this.disabled = true;
+                    
+                    showNotification(`Preparing download for ${surah}...`, 'info');
+                    
+                    setTimeout(() => {
+                        window.open(url, '_blank');
+                        showNotification(`Download started for ${surah}!`, 'success');
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 1000);
+                });
+            });
+            
+            // Handle bookmark buttons
+            document.querySelectorAll('.bookmark-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const surah = this.closest('.content-item').querySelector('h3').textContent;
+                    const isBookmarked = this.textContent.includes('Bookmarked');
+                    
+                    if (isBookmarked) {
+                        this.innerHTML = '<i class="fas fa-bookmark"></i> Bookmark';
+                        showNotification(`Removed ${surah} from bookmarks`, 'info');
+                    } else {
+                        this.innerHTML = '<i class="fas fa-bookmark"></i> Bookmarked';
+                        showNotification(`Added ${surah} to bookmarks`, 'success');
+                    }
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                const items = document.querySelectorAll('.content-item');
+                
+                items.forEach(item => {
+                    const title = item.querySelector('h3').textContent.toLowerCase();
+                    const content = item.textContent.toLowerCase();
+                    
+                    if (title.includes(query) || content.includes(query)) {
+                        item.style.display = 'block';
+                        item.style.border = query ? '2px solid #FCD34D' : '1px solid rgba(139, 92, 246, 0.2)';
+                    } else {
+                        item.style.display = query ? 'none' : 'block';
+                        item.style.border = '1px solid rgba(139, 92, 246, 0.2)';
+                    }
+                });
+            });
+        });
+        
+        function showNotification(message, type = 'info') {
+            const colors = { success: '#22C55E', error: '#EF4444', info: '#8B5CF6' };
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 20px; right: 20px;
+                background: ${colors[type]}; color: white;
+                padding: 1rem 1.5rem; border-radius: 0.5rem;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+                z-index: 10000; animation: slideIn 0.3s ease;
+                display: flex; align-items: center; gap: 0.5rem;
+            `;
+            notification.innerHTML = `<i class="fas fa-info-circle"></i><span>${message}</span>`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        const style = document.createElement('style');
+        style.textContent = '@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }';
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
