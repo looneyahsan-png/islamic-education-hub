@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Books - Islamic Education Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Arabic Text */
+        .arabic { font-family: 'Amiri', serif; color: #ffd700; font-size: 1.3rem; direction: rtl; text-align: center; margin: 0.5rem 0; }
+        .arabic-large { font-size: 2.5rem; margin: 2rem 0; }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 2px solid #6a5acd;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-decoration: none;
+        }
+        
+        .logo i { color: #6a5acd; font-size: 2rem; }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(135deg, #6a5acd, #483d8b);
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #ffd700;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Header */
+        .header {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6a5acd 0%, #ffd700 50%, #483d8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .books-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .books-intro {
+            background: rgba(26, 26, 46, 0.8);
+            border: 2px solid rgba(106, 90, 205, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .books-intro:hover {
+            border-color: #6a5acd;
+            box-shadow: 0 20px 40px rgba(106, 90, 205, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .books-intro h2 {
+            color: #ffd700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .books-intro p {
+            color: #b8b8d4;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .main-cta {
+            background: linear-gradient(135deg, #6a5acd, #483d8b);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(106, 90, 205, 0.3);
+        }
+        
+        .main-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(106, 90, 205, 0.5);
+            background: linear-gradient(135deg, #ffd700, #6a5acd);
+        }
+        
+        .main-cta i {
+            font-size: 1.5rem;
+        }
+        
+        /* Features Grid */
+        .features-section {
+            padding: 4rem 0;
+            background: rgba(15, 15, 35, 0.5);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 2px solid rgba(106, 90, 205, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #6a5acd;
+            box-shadow: 0 20px 40px rgba(106, 90, 205, 0.2);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6a5acd, #ffd700);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .feature-card h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card p {
+            color: #b8b8d4;
+            line-height: 1.6;
+        }
+        
+        /* Categories Section */
+        .categories-section {
+            padding: 4rem 0;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .category-card {
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid rgba(106, 90, 205, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            background: rgba(106, 90, 205, 0.1);
+            border-color: #6a5acd;
+            transform: translateY(-3px);
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+        
+        .category-card h4 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .category-card .arabic {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-card p {
+            color: #b8b8d4;
+            font-size: 0.9rem;
+        }
+        
+        /* Info Section */
+        .info-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+        }
+        
+        .info-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .info-text h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .info-text p {
+            color: #b8b8d4;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-list li {
+            color: #b8b8d4;
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .info-list li::before {
+            content: '✓';
+            color: #ffd700;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            padding: 3rem 0 1rem;
+            border-top: 2px solid #6a5acd;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #b8b8d4;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+        
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6a5acd, #483d8b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #ffd700, #6a5acd);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(106, 90, 205, 0.3);
+            color: #b8b8d4;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 46, 0.95);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+            
+            .nav-menu.active { display: flex; }
+            .mobile-toggle { display: flex; }
+            
+            .books-intro {
+                padding: 2rem;
+            }
+            
+            .main-cta {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .features-grid,
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-mosque"></i>
+                Islamic Education Hub
+            </a>
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="quran.html" class="nav-link">Quran</a></li>
+                <li><a href="hadith.html" class="nav-link">Hadith & Sunnah</a></li>
+                <li><a href="books.html" class="nav-link active">Islamic Books</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="header">
+        <div class="container">
+            <div class="arabic arabic-large">الكتب الإسلامية</div>
+            <h1>Islamic Books</h1>
+            <p>Comprehensive collection of authentic Islamic literature and scholarly works</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="books-container">
+                <div class="books-intro">
+                    <h2>Discover Islamic Knowledge</h2>
+                    <div class="arabic">اكتشف المعرفة الإسلامية</div>
+                    <p>Access thousands of authentic Islamic books, scholarly works, and religious texts from trusted sources. Our comprehensive library includes classical and contemporary Islamic literature covering all aspects of faith, jurisprudence, history, and spirituality.</p>
+                    
+                    <a href="https://www.ghousia.net/sunni-books/" target="_blank" class="main-cta">
+                        <i class="fas fa-book-open"></i>
+                        Read Online
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="color: #ffd700; font-size: 2.5rem; margin-bottom: 1rem;">Why Choose Our Library?</h2>
+                <div class="arabic">لماذا تختار مكتبتنا؟</div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Authentic Sources</h3>
+                    <div class="arabic">مصادر موثقة</div>
+                    <p>All books are from verified and authentic Islamic sources, ensuring reliability and accuracy in religious content.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Multiple Languages</h3>
+                    <div class="arabic">لغات متعددة</div>
+                    <p>Access books in Arabic, English, Urdu, and other languages to suit your reading preferences and understanding.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Easy Navigation</h3>
+                    <div class="arabic">تصفح سهل</div>
+                    <p>User-friendly interface with advanced search and categorization features for quick access to desired content.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Free Access</h3>
+                    <div class="arabic">وصول مجاني</div>
+                    <p>Complete free access to the entire library with options to read online or download for offline reading.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="color: #ffd700; font-size: 2.5rem; margin-bottom: 1rem;">Book Categories</h2>
+                <div class="arabic">فئات الكتب</div>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-quran"></i>
+                    </div>
+                    <h4>Tafseer</h4>
+                    <div class="arabic">التفسير</div>
+                    <p>Quranic commentary and interpretation</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <h4>Hadith</h4>
+                    <div class="arabic">الحديث</div>
+                    <p>Prophetic traditions and sayings</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h4>Fiqh</h4>
+                    <div class="arabic">الفقه</div>
+                    <p>Islamic jurisprudence and law</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Aqeedah</h4>
+                    <div class="arabic">العقيدة</div>
+                    <p>Islamic beliefs and theology</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h4>Seerah</h4>
+                    <div class="arabic">السيرة</div>
+                    <p>Biography of Prophet Muhammad ﷺ</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h4>History</h4>
+                    <div class="arabic">التاريخ</div>
+                    <p>Islamic history and civilization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-content">
+                <div class="info-text">
+                    <h3>Comprehensive Islamic Library</h3>
+                    <div class="arabic">مكتبة إسلامية شاملة</div>
+                    <p>Our partnership with Ghousia.net provides you access to one of the most comprehensive collections of Sunni Islamic books available online. This trusted platform has been serving the Muslim community for years with authentic and verified Islamic literature.</p>
+                    
+                    <ul class="info-list">
+                        <li>Thousands of authentic Islamic books</li>
+                        <li>Classical and contemporary works</li>
+                        <li>Scholarly research and academic texts</li>
+                        <li>Books by renowned Islamic scholars</li>
+                        <li>Regular updates with new publications</li>
+                    </ul>
+                </div>
+                
+                <div class="info-visual" style="text-align: center;">
+                    <div style="background: rgba(106, 90, 205, 0.1); padding: 3rem; border-radius: 20px; border: 2px solid rgba(106, 90, 205, 0.3);">
+                        <i class="fas fa-book-open" style="font-size: 5rem; color: #ffd700; margin-bottom: 1rem;"></i>
+                        <h4 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 1rem;">Start Reading Today</h4>
+                        <p style="color: #b8b8d4;">Click the button above to access our complete Islamic library</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Islamic Education Hub</h4>
+                    <div class="arabic">مركز التعليم الإسلامي</div>
+                    <p>Dedicated to spreading authentic Islamic knowledge and education worldwide</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="quran.html">Holy Quran</a></p>
+                    <p><a href="hadith.html">Hadith & Sunnah</a></p>
+                    <p><a href="books.html">Islamic Books</a></p>
+                    <p><a href="about.html">About Creator</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/ahsanijaz010" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://discord.com/users/ahsan_prime" target="_blank" class="social-link">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="arabic">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
+                <p>&copy; 2024 Islamic Education Hub. Created by Ahsan with ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.feature-card, .category-card, .books-intro');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
